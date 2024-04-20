@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://n4fr50hgvmxg"
-path="res://.godot/imported/sign.png-0a69457793cc30ee494dd63ecebf56b0.ctex"
+path="res://.godot/imported/sign.png-04ece8b0b158821dff6bde284b970f97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oak_woods_v1.0/decorations/sign.png"
-dest_files=["res://.godot/imported/sign.png-0a69457793cc30ee494dd63ecebf56b0.ctex"]
+source_file="res://Textures/oak_woods_v1.0/decorations/sign.png"
+dest_files=["res://.godot/imported/sign.png-04ece8b0b158821dff6bde284b970f97.ctex"]
 
 [params]
 
