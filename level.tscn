@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://op8fmqww8anh"]
+[gd_scene load_steps=14 format=3 uid="uid://op8fmqww8anh"]
 
 [ext_resource type="PackedScene" uid="uid://doc4cbch6b1y6" path="res://PlayerScript2D/player.tscn" id="1_0gg2w"]
+[ext_resource type="Script" path="res://Manager.gd" id="1_02ohf"]
 [ext_resource type="Texture2D" uid="uid://dk40el05skdch" path="res://Textures/PixelCastle/Background/01 background.png" id="1_bme2i"]
 [ext_resource type="Texture2D" uid="uid://ba2yun8yq55ji" path="res://Textures/PixelCastle/Background/02 background.png" id="2_x6jto"]
 [ext_resource type="Texture2D" uid="uid://cf6wjwq8bhgpk" path="res://Textures/PixelCastle/Background/03 background A.png" id="3_5tui6"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dbvn6ys5lyl1y" path="res://Textures/PixelCastle/Background/05 background.png" id="6_qahch"]
 [ext_resource type="PackedScene" uid="uid://1usfs7be33jv" path="res://MobsScript2D/skeleton.tscn" id="7_agqap"]
 [ext_resource type="Texture2D" uid="uid://ckkcupgqkhw23" path="res://Textures/PixelCastle/main_lev_build.png" id="8_mensm"]
+[ext_resource type="PackedScene" uid="uid://dx53idniys5hk" path="res://pause_menu.tscn" id="11_digax"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ly5u"]
 texture = ExtResource("8_mensm")
@@ -5408,6 +5410,9 @@ sources/0 = SubResource("TileSetAtlasSource_6ly5u")
 
 [node name="Level" type="Node2D"]
 
+[node name="Manager" type="Node" parent="."]
+script = ExtResource("1_02ohf")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="PL" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -5470,3 +5475,8 @@ position = Vector2(335, 252)
 
 [node name="Skeleton2" parent="Mobs" instance=ExtResource("7_agqap")]
 position = Vector2(493, 248)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("11_digax")]
+process_mode = 2
