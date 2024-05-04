@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://d13q8e3ji1gjl" path="res://Textures/BGS/RuinedTemple/background4.png" id="18_vcgch"]
 
 [node name="BG" type="ParallaxBackground"]
+layer = -1
 script = ExtResource("1_n16os")
 
 [node name="PLforest1" type="ParallaxLayer" parent="."]

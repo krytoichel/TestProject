@@ -24,5 +24,10 @@ text = "Quit"
 
 [node name="BG" parent="." instance=ExtResource("2_33pt2")]
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.2
+blend_mode = 1
+range_layer_min = -1
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
