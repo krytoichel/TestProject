@@ -14,10 +14,6 @@ config/name="Project"
 run/main_scene="res://MainMenuScript2D/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
-[gui]
-
-theme/custom="res://new_theme.tres"
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
