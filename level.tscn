@@ -5493,7 +5493,7 @@ layer_0/tile_data = PackedInt32Array(1376256, 851968, 42, 1441792, 851968, 43, 1
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_0gg2w")]
-position = Vector2(57, 301)
+position = Vector2(154, 229)
 
 [node name="Mobs" type="Node2D" parent="."]
 
@@ -5505,6 +5505,9 @@ position = Vector2(520, 248)
 
 [node name="Goblin3" parent="Mobs" instance=ExtResource("7_agqap")]
 position = Vector2(633, 246)
+
+[node name="Goblin4" parent="Mobs" instance=ExtResource("7_agqap")]
+position = Vector2(693, 245)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

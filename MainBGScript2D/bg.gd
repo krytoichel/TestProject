@@ -7,7 +7,7 @@ func _process(delta):
 	scroll_offset.x -= speed * delta
 
 var rng = RandomNumberGenerator.new()
-func _on_p_lforest_1_child_entered_tree(node):
+func _on_p_lforest_1_child_entered_tree(_node):
 	var mrn = rng.randi_range(0,3)
 	if mrn == 0:
 		$PLforest1.visible = true
