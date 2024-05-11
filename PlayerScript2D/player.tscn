@@ -1148,7 +1148,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Roll",
-"speed": 10.0
+"speed": 23.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1316,6 +1316,20 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Attack2"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"combo2_state"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_7w4pl"]
 length = 0.7
@@ -1369,6 +1383,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Attack4"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"combo1_state"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wop8m"]
@@ -1699,7 +1727,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_36b0g"]
-length = 1.2
+length = 0.521739
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1707,7 +1735,7 @@ tracks/0/path = NodePath("CollisionShape2D/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"times": PackedFloat32Array(0, 0.0434783, 0.0869565, 0.130435, 0.173913, 0.217391, 0.26087, 0.304348, 0.347826, 0.391304, 0.434783, 0.478261),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -1898,7 +1926,7 @@ shape = SubResource("CapsuleShape2D_e34ra")
 position = Vector2(15, -1)
 scale = Vector2(0.811153, 0.811153)
 sprite_frames = SubResource("SpriteFrames_1cj4b")
-animation = &"Death"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
