@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3s2gtb4kl6r4" path="res://Textures/PixelCastle/Background/03 background B.png" id="4_asht6"]
 [ext_resource type="Texture2D" uid="uid://dwx4uwydfwc8h" path="res://Textures/PixelCastle/Background/04 background.png" id="5_0y7b0"]
 [ext_resource type="Texture2D" uid="uid://dbvn6ys5lyl1y" path="res://Textures/PixelCastle/Background/05 background.png" id="6_qahch"]
-[ext_resource type="PackedScene" uid="uid://1usfs7be33jv" path="res://MobsScript2D/skeleton.tscn" id="7_agqap"]
+[ext_resource type="PackedScene" uid="uid://1usfs7be33jv" path="res://MobsScript2D/Goblin1.tscn" id="7_agqap"]
 [ext_resource type="Texture2D" uid="uid://ckkcupgqkhw23" path="res://Textures/PixelCastle/main_lev_build.png" id="8_mensm"]
 [ext_resource type="Texture2D" uid="uid://cfdk246k2sqkt" path="res://Textures/PixelCastle/other_and_decorative.png" id="9_msgns"]
 [ext_resource type="PackedScene" uid="uid://cmrq7o2fcbk0w" path="res://CollectiblesScript2D/shard.tscn" id="10_ys8eq"]
@@ -7193,10 +7193,9 @@ text = "Gems"
 script = SubResource("GDScript_vpmq2")
 
 [node name="Collectibles" type="Node2D" parent="."]
-visible = false
 
 [node name="Shard" parent="Collectibles" instance=ExtResource("10_ys8eq")]
-position = Vector2(218, 319)
+position = Vector2(267, 280)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false

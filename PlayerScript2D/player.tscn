@@ -1292,6 +1292,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_2s8uf"]
 length = 0.6
+step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1323,7 +1324,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -1926,8 +1927,9 @@ shape = SubResource("CapsuleShape2D_e34ra")
 position = Vector2(15, -1)
 scale = Vector2(0.811153, 0.811153)
 sprite_frames = SubResource("SpriteFrames_1cj4b")
-animation = &"Idle"
-autoplay = "Idle"
+animation = &"Attack4"
+autoplay = "Idle_weapon"
+frame = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
