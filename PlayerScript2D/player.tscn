@@ -1,4 +1,4 @@
-[gd_scene load_steps=313 format=3 uid="uid://doc4cbch6b1y6"]
+[gd_scene load_steps=315 format=3 uid="uid://doc4cbch6b1y6"]
 
 [ext_resource type="Script" path="res://PlayerScript2D/player.gd" id="1_6xdrl"]
 [ext_resource type="Texture2D" uid="uid://c8xkugtxiub8k" path="res://Textures/Hero/Hero Knight 3/PNG/Attacks/attack-A1.png" id="2_jvfet"]
@@ -144,6 +144,7 @@
 [ext_resource type="Texture2D" uid="uid://cxteu3gbns12d" path="res://Textures/Hero/Hero Knight 3/PNG/walk-with-weapon-9.png" id="142_02g64"]
 [ext_resource type="Texture2D" uid="uid://b6sad602bac3g" path="res://Textures/Hero/Hero Knight 3/PNG/walk-with-weapon-10.png" id="143_2nag3"]
 [ext_resource type="Texture2D" uid="uid://dikmjhqo17fe3" path="res://Textures/Hero/Hero Knight 3/PNG/walk-with-weapon-11.png" id="144_c86s1"]
+[ext_resource type="Texture2D" uid="uid://d0ifkik6viq4s" path="res://Textures/circle.png" id="145_76h0x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e34ra"]
 radius = 13.0
@@ -745,9 +746,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w3wgn")
 }],
-"loop": false,
+"loop": true,
 "name": &"Attack1",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1041,7 +1042,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1916,6 +1917,9 @@ _data = {
 "Walk_weapon": SubResource("Animation_ada4n")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1dqj3"]
+polygon = PackedVector2Array(-172.308, 349.425, -73.8462, 349.425, 61.5385, 349.425, 67.6923, 363.218, -178.462, 363.218)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6xdrl")
 
@@ -1926,8 +1930,10 @@ shape = SubResource("CapsuleShape2D_e34ra")
 position = Vector2(15, -1)
 scale = Vector2(0.811153, 0.811153)
 sprite_frames = SubResource("SpriteFrames_1cj4b")
-animation = &"Idle"
+animation = &"Attack1"
 autoplay = "Idle"
+frame = 6
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
@@ -1943,3 +1949,13 @@ drag_horizontal_enabled = true
 libraries = {
 "": SubResource("AnimationLibrary_sq88i")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.499997, -14.5)
+scale = Vector2(0.08125, 0.10875)
+energy = 0.56
+texture = ExtResource("145_76h0x")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="PointLight2D"]
+position = Vector2(6.15388, 4.5977)
+occluder = SubResource("OccluderPolygon2D_1dqj3")
