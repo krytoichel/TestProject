@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://op8fmqww8anh"]
+[gd_scene load_steps=25 format=3 uid="uid://op8fmqww8anh"]
 
 [ext_resource type="PackedScene" uid="uid://doc4cbch6b1y6" path="res://PlayerScript2D/player.tscn" id="1_0gg2w"]
 [ext_resource type="Texture2D" uid="uid://dk40el05skdch" path="res://Textures/PixelCastle/Background/01 background.png" id="1_bme2i"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://3s2gtb4kl6r4" path="res://Textures/PixelCastle/Background/03 background B.png" id="4_asht6"]
 [ext_resource type="Texture2D" uid="uid://dwx4uwydfwc8h" path="res://Textures/PixelCastle/Background/04 background.png" id="5_0y7b0"]
 [ext_resource type="Texture2D" uid="uid://dbvn6ys5lyl1y" path="res://Textures/PixelCastle/Background/05 background.png" id="6_qahch"]
-[ext_resource type="PackedScene" uid="uid://1usfs7be33jv" path="res://MobsScript2D/Goblin1.tscn" id="7_agqap"]
 [ext_resource type="Texture2D" uid="uid://ckkcupgqkhw23" path="res://Textures/PixelCastle/main_lev_build.png" id="8_mensm"]
 [ext_resource type="Texture2D" uid="uid://cfdk246k2sqkt" path="res://Textures/PixelCastle/other_and_decorative.png" id="9_msgns"]
 [ext_resource type="Texture2D" uid="uid://bi1ng5doox4n7" path="res://Textures/PixelWorld/main_lev_buildA.png" id="10_kp3f3"]
@@ -15783,18 +15782,6 @@ layer_2/tile_data = PackedInt32Array(851986, 6356992, 33, 917522, 6356992, 34, 9
 position = Vector2(192, 259)
 
 [node name="Mobs" type="Node2D" parent="."]
-
-[node name="Goblin" parent="Mobs" instance=ExtResource("7_agqap")]
-position = Vector2(524, 87)
-
-[node name="Goblin2" parent="Mobs" instance=ExtResource("7_agqap")]
-position = Vector2(478, 78)
-
-[node name="Goblin3" parent="Mobs" instance=ExtResource("7_agqap")]
-position = Vector2(373, 72)
-
-[node name="Goblin4" parent="Mobs" instance=ExtResource("7_agqap")]
-position = Vector2(416, 78)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
