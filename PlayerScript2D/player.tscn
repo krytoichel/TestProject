@@ -1927,9 +1927,10 @@ shape = SubResource("CapsuleShape2D_e34ra")
 position = Vector2(15, -1)
 scale = Vector2(0.811153, 0.811153)
 sprite_frames = SubResource("SpriteFrames_1cj4b")
-animation = &"Attack4"
+animation = &"Idle_weapon"
 autoplay = "Idle_weapon"
-frame = 5
+frame = 1
+frame_progress = 0.876878
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)

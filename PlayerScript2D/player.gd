@@ -67,7 +67,7 @@ func _physics_process(delta):
 		animPlayer.play('Death')
 		await animPlayer.animation_finished
 		queue_free()
-		get_tree().change_scene_to_file("res://MainMenuScript2D/menu.tscn")
+		get_tree().change_scene_to_file(""res://MainMenuScript2D/menu.tscn"")
 	
 	move_and_slide()
 	
