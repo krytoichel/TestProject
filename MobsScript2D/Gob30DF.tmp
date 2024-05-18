@@ -208,7 +208,7 @@ radius = 87.0057
 radius = 28.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apggu"]
-size = Vector2(5, 2)
+size = Vector2(22, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1d2k"]
 size = Vector2(40, 3.5)
@@ -223,7 +223,7 @@ shape = SubResource("CapsuleShape2D_fipuj")
 position = Vector2(1, -6)
 scale = Vector2(0.7125, 0.7125)
 sprite_frames = SubResource("SpriteFrames_aluyb")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Detector" type="Area2D" parent="."]
@@ -241,7 +241,7 @@ shape = SubResource("CircleShape2D_8vwp5")
 [node name="Death" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
-position = Vector2(0.5, -13)
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_apggu")
 
 [node name="Death2" type="Area2D" parent="."]

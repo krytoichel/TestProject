@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://op8fmqww8anh"]
+[gd_scene load_steps=18 format=3 uid="uid://op8fmqww8anh"]
 
 [ext_resource type="PackedScene" uid="uid://doc4cbch6b1y6" path="res://PlayerScript2D/player.tscn" id="1_0gg2w"]
 [ext_resource type="Texture2D" uid="uid://dk40el05skdch" path="res://Textures/PixelCastle/Background/01 background.png" id="1_bme2i"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://ckkcupgqkhw23" path="res://Textures/PixelCastle/main_lev_build.png" id="8_mensm"]
 [ext_resource type="Texture2D" uid="uid://cfdk246k2sqkt" path="res://Textures/PixelCastle/other_and_decorative.png" id="9_msgns"]
 [ext_resource type="PackedScene" uid="uid://cmrq7o2fcbk0w" path="res://CollectiblesScript2D/shard.tscn" id="10_ys8eq"]
-[ext_resource type="PackedScene" uid="uid://ckdtc81cdnmij" path="res://MobsScript2D/DarkSlime.tscn" id="12_3wrjl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ly5u"]
 texture = ExtResource("8_mensm")
@@ -7159,15 +7158,21 @@ layer_2/tile_data = PackedInt32Array(851986, 6356992, 33, 917522, 6356992, 34, 9
 position = Vector2(-5, -55)
 
 [node name="Player" parent="Player" instance=ExtResource("1_0gg2w")]
-position = Vector2(211, 316)
+position = Vector2(190, 313)
 
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Goblin" parent="Mobs" instance=ExtResource("7_agqap")]
-position = Vector2(126, 268)
+position = Vector2(387, 259)
 
-[node name="DarkSlime" parent="Mobs" instance=ExtResource("12_3wrjl")]
-position = Vector2(360, 254)
+[node name="Goblin2" parent="Mobs" instance=ExtResource("7_agqap")]
+position = Vector2(64, 263)
+
+[node name="Goblin3" parent="Mobs" instance=ExtResource("7_agqap")]
+position = Vector2(277, 239)
+
+[node name="Goblin4" parent="Mobs" instance=ExtResource("7_agqap")]
+position = Vector2(110, 193)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
