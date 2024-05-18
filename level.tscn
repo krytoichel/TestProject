@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://op8fmqww8anh"]
+[gd_scene load_steps=18 format=3 uid="uid://op8fmqww8anh"]
 
 [ext_resource type="PackedScene" uid="uid://doc4cbch6b1y6" path="res://PlayerScript2D/player.tscn" id="1_0gg2w"]
 [ext_resource type="Texture2D" uid="uid://dk40el05skdch" path="res://Textures/PixelCastle/Background/01 background.png" id="1_bme2i"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://ckkcupgqkhw23" path="res://Textures/PixelCastle/main_lev_build.png" id="8_mensm"]
 [ext_resource type="Texture2D" uid="uid://cfdk246k2sqkt" path="res://Textures/PixelCastle/other_and_decorative.png" id="9_msgns"]
 [ext_resource type="PackedScene" uid="uid://cmrq7o2fcbk0w" path="res://CollectiblesScript2D/shard.tscn" id="10_ys8eq"]
-[ext_resource type="PackedScene" uid="uid://ckdtc81cdnmij" path="res://MobsScript2D/DarkSlime.tscn" id="12_3wrjl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ly5u"]
 texture = ExtResource("8_mensm")
@@ -7156,18 +7155,24 @@ layer_2/name = "Back2"
 layer_2/tile_data = PackedInt32Array(851986, 6356992, 33, 917522, 6356992, 34, 983058, 6356992, 35, 851987, 6422528, 33, 917523, 6422528, 34, 983059, 6422528, 35, 851972, 6356992, 33, 917508, 6356992, 34, 983044, 6356992, 35, 851973, 6422528, 33, 917509, 6422528, 34, 983045, 6422528, 35, 851977, 6225920, 29, 917513, 6225920, 30, 851982, 6356992, 29, 917518, 6356992, 30, 524303, 393217, 1, 589839, 393217, 2, 524304, 458753, 1, 589840, 458753, 2, 524302, 262145, 1, 524293, 786433, 1, 589829, 786433, 2, 655365, 786433, 3, 524298, 1245185, 1, 589834, 1245185, 2, 655370, 1245185, 3, 720906, 1245185, 4, 524306, 1245185, 1, 589842, 1245185, 2, 655378, 1245185, 3, 720914, 1245185, 4)
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(-5, -55)
 
 [node name="Player" parent="Player" instance=ExtResource("1_0gg2w")]
-position = Vector2(211, 316)
+position = Vector2(191, 248)
 
 [node name="Mobs" type="Node2D" parent="."]
+visible = false
 
 [node name="Goblin" parent="Mobs" instance=ExtResource("7_agqap")]
-position = Vector2(126, 268)
+position = Vector2(396, 249)
 
-[node name="DarkSlime" parent="Mobs" instance=ExtResource("12_3wrjl")]
-position = Vector2(360, 254)
+[node name="Goblin2" parent="Mobs" instance=ExtResource("7_agqap")]
+position = Vector2(520, 248)
+
+[node name="Goblin3" parent="Mobs" instance=ExtResource("7_agqap")]
+position = Vector2(633, 246)
+
+[node name="Goblin4" parent="Mobs" instance=ExtResource("7_agqap")]
+position = Vector2(693, 245)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
