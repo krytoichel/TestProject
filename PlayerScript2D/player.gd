@@ -167,7 +167,7 @@ func combo1_state():
 func combo2_state():
 	combo2 = true
 	await animPlayer.animation_finished
-	combo1 = false
+	combo2 = false
 
 func kick_state():
 	velocity.x = 0

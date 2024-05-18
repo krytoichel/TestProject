@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://1usfs7be33jv"]
 
-[ext_resource type="Script" path="res://MobsScript2D/skeleton.gd" id="1_3ffw1"]
+[ext_resource type="Script" path="res://MobsScript2D/Goblin1.gd" id="1_3ffw1"]
 [ext_resource type="Texture2D" uid="uid://c3vsn7iygkrnc" path="res://Textures/Mobs/Goblin/Attack.png" id="2_w2m6l"]
 [ext_resource type="Texture2D" uid="uid://dkib035k5egfd" path="res://Textures/Mobs/Goblin/Death.png" id="3_w07t3"]
 [ext_resource type="Texture2D" uid="uid://cn8bcc7u4kqn4" path="res://Textures/Mobs/Goblin/Idle.png" id="4_aarfw"]
