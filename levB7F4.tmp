@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://op8fmqww8anh"]
+[gd_scene load_steps=26 format=3 uid="uid://op8fmqww8anh"]
 
 [ext_resource type="PackedScene" uid="uid://doc4cbch6b1y6" path="res://PlayerScript2D/player.tscn" id="1_0gg2w"]
 [ext_resource type="Texture2D" uid="uid://dk40el05skdch" path="res://Textures/PixelCastle/Background/01 background.png" id="1_bme2i"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://82fxltklx17v" path="res://Textures/Caves/mainlev_build.png" id="12_4hjjk"]
 [ext_resource type="Texture2D" uid="uid://d0ifkik6viq4s" path="res://Textures/circle.png" id="13_8o46j"]
 [ext_resource type="PackedScene" uid="uid://1usfs7be33jv" path="res://MobsScript2D/Goblin1.tscn" id="14_dkeab"]
-[ext_resource type="PackedScene" uid="uid://ckdtc81cdnmij" path="res://MobsScript2D/DarkSlime.tscn" id="15_3bc5a"]
 [ext_resource type="Texture2D" uid="uid://dxkkof1yd72s" path="res://Textures/Bar/BorderBG.png" id="15_dh62q"]
 [ext_resource type="Texture2D" uid="uid://dumnpvlojnqpd" path="res://Textures/Bar/Colors.png" id="16_rr8kb"]
 
@@ -15787,9 +15786,6 @@ position = Vector2(192, 259)
 
 [node name="Goblin" parent="Mobs" instance=ExtResource("14_dkeab")]
 position = Vector2(359, 273)
-
-[node name="DarkSlime" parent="Mobs" instance=ExtResource("15_3bc5a")]
-position = Vector2(532, 268)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
