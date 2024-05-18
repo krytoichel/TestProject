@@ -1324,7 +1324,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -1930,10 +1930,9 @@ shape = SubResource("CapsuleShape2D_e34ra")
 position = Vector2(15, -1)
 scale = Vector2(0.811153, 0.811153)
 sprite_frames = SubResource("SpriteFrames_1cj4b")
-animation = &"Attack1"
+animation = &"Attack2"
 autoplay = "Idle"
-frame = 6
-frame_progress = 1.0
+frame = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
