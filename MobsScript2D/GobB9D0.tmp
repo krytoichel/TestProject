@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://1usfs7be33jv"]
+[gd_scene load_steps=48 format=3 uid="uid://1usfs7be33jv"]
 
 [ext_resource type="Script" path="res://MobsScript2D/Goblin1.gd" id="1_3ffw1"]
 [ext_resource type="Texture2D" uid="uid://c3vsn7iygkrnc" path="res://Textures/Mobs/Goblin/Attack.png" id="2_w2m6l"]
@@ -393,6 +393,9 @@ _data = {
 "take_hit": SubResource("Animation_es8de")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmwba"]
+size = Vector2(56, 20)
+
 [node name="Goblin" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_3ffw1")
@@ -435,6 +438,12 @@ shape = SubResource("RectangleShape2D_j1d2k")
 libraries = {
 "": SubResource("AnimationLibrary_rpmgq")
 }
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_jmwba")
 
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]

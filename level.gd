@@ -4,6 +4,6 @@ extends Node2D
 
 func _process(_delta):
 	var tween = get_tree().create_tween()
-	tween.tween_property(light, 'energy', 0.2, 5)
+	tween.tween_property(light, 'energy', 0.2, 2)
 		
 	

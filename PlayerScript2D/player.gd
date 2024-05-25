@@ -32,6 +32,7 @@ var state = RUN
 var combo1 = false
 var combo2 = false
 var attack_cooldown = false
+var state_cooldown = false
 
 #процессы, происходящие на левеле постоянно
 func _physics_process(delta):
@@ -127,6 +128,7 @@ func shield_state():
 func roll_state():
 	animPlayer.play('Roll')
 	await animPlayer.animation_finished
+	state_freeze()
 	state = RUN
 
 func attack1_state():
@@ -173,12 +175,18 @@ func kick_state():
 	velocity.x = 0
 	animPlayer.play('Kick')
 	await animPlayer.animation_finished
+	state_freeze()
 	state = RUN
 
 func attack_freeze():
 	attack_cooldown = true
 	await get_tree().create_timer(0.1).timeout
 	attack_cooldown = false
+
+func state_freeze():
+	state_cooldown = true
+	await get_tree().create_timer(10.0).timeout
+	state_cooldown = false
 	
 	
 
