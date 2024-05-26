@@ -14,6 +14,10 @@ config/name="Project"
 run/main_scene="res://MainMenuScript2D/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
+[autoload]
+
+Signals="*res://signals.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
@@ -73,6 +77,10 @@ shield={
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
+2d_physics/layer_5="playerHurt"
+3d_physics/layer_5="playerHurtBox"
+2d_physics/layer_6="enemyHurt"
+3d_physics/layer_6="enemyHurtBox"
 
 [rendering]
 

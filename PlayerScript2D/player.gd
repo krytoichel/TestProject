@@ -12,6 +12,7 @@ enum {
 	ROLL,
 	SHIELD,
 	RUN,
+	DAMAGE
 }
 
 #переменные
@@ -33,6 +34,11 @@ var combo1 = false
 var combo2 = false
 var attack_cooldown = false
 var state_cooldown = false
+var player_pos 
+
+
+func _ready():
+	Signals.connect("enemy_attack", Callable(self, "_on_damage_received"))
 
 #процессы, происходящие на левеле постоянно
 func _physics_process(delta):
@@ -57,6 +63,8 @@ func _physics_process(delta):
 			shield_state()#1
 		RUN:
 			move_state()#1
+		DAMAGE:
+			damage_state()
 			
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -71,6 +79,10 @@ func _physics_process(delta):
 		#get_tree().change_scene_to_file(""res://MainMenuScript2D/menu.tscn"")
 	
 	move_and_slide()
+	
+	player_pos = self.position
+	Signals.emit_signal("player_position_update", player_pos)
+	
 	
 #наша State Machine
 func move_state():
@@ -188,7 +200,19 @@ func state_freeze():
 	await get_tree().create_timer(10.0).timeout
 	state_cooldown = false
 	
+func damage_state():
+	velocity.x = 0
+	animPlayer.play("Hit_idle_B")
+	await animPlayer.animation_finished
+	state = RUN
 	
+
+	
+
+func _on_damage_received(enemy_damage):
+	state = DAMAGE
+	health -= enemy_damage
+	print(health)
 
 
 	

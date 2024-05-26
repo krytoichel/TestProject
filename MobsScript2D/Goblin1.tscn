@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://1usfs7be33jv"]
+[gd_scene load_steps=46 format=3 uid="uid://1usfs7be33jv"]
 
 [ext_resource type="Script" path="res://MobsScript2D/Goblin1.gd" id="1_3ffw1"]
 [ext_resource type="Texture2D" uid="uid://c3vsn7iygkrnc" path="res://Textures/Mobs/Goblin/Attack.png" id="2_w2m6l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cn8bcc7u4kqn4" path="res://Textures/Mobs/Goblin/Idle.png" id="4_aarfw"]
 [ext_resource type="Texture2D" uid="uid://y5kjh3kalpnd" path="res://Textures/Mobs/Goblin/Run.png" id="5_vomkr"]
 [ext_resource type="Texture2D" uid="uid://xdspt3ke656d" path="res://Textures/Mobs/Goblin/Take Hit.png" id="6_d05e2"]
+[ext_resource type="PackedScene" uid="uid://cfxn7vbo6ae7w" path="res://DamageBox/damage_box.tscn" id="7_xdokh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fipuj"]
 radius = 11.0
@@ -235,18 +236,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iiu2t"]
-radius = 87.0057
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8vwp5"]
-radius = 28.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_apggu"]
-size = Vector2(5, 2)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1d2k"]
-size = Vector2(40, 3.5)
-
 [sub_resource type="Animation" id="Animation_7uphm"]
 length = 0.8
 tracks/0/type = "value"
@@ -272,6 +261,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Attack"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_otx6s"]
@@ -384,14 +385,33 @@ tracks/1/keys = {
 "values": ["take_hit"]
 }
 
+[sub_resource type="Animation" id="Animation_lesdw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rpmgq"]
 _data = {
 "Attack": SubResource("Animation_7uphm"),
+"RESET": SubResource("Animation_lesdw"),
 "death": SubResource("Animation_otx6s"),
 "idle": SubResource("Animation_ncmux"),
 "run": SubResource("Animation_07xpp"),
 "take_hit": SubResource("Animation_es8de")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6bnl"]
+size = Vector2(14, 15.5)
 
 [node name="Goblin" type="CharacterBody2D"]
 collision_layer = 4
@@ -401,44 +421,46 @@ script = ExtResource("1_3ffw1")
 shape = SubResource("CapsuleShape2D_fipuj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -6)
+position = Vector2(4, -5)
 scale = Vector2(0.7125, 0.7125)
 sprite_frames = SubResource("SpriteFrames_aluyb")
 animation = &"Attack"
 autoplay = "idle"
-
-[node name="Detector" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
-shape = SubResource("CircleShape2D_iiu2t")
-
-[node name="DetectorAtack" type="Area2D" parent="."]
-position = Vector2(0, -2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorAtack"]
-position = Vector2(1, 3)
-shape = SubResource("CircleShape2D_8vwp5")
-
-[node name="Death" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
-position = Vector2(0.5, -13)
-shape = SubResource("RectangleShape2D_apggu")
-
-[node name="Death2" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Death2"]
-position = Vector2(1, 0.25)
-shape = SubResource("RectangleShape2D_j1d2k")
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rpmgq")
 }
+autoplay = "idle"
 
-[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
-[connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
-[connection signal="body_entered" from="DetectorAtack" to="." method="_on_detector_atack_body_entered"]
-[connection signal="body_exited" from="DetectorAtack" to="." method="_on_detector_atack_body_exited"]
-[connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
-[connection signal="body_entered" from="Death2" to="." method="_on_death_2_body_entered"]
+[node name="AttackDirection" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="AttackDirection"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/Area2D"]
+position = Vector2(19, -2)
+shape = SubResource("RectangleShape2D_k6bnl")
+
+[node name="DamageBox" parent="AttackDirection" instance=ExtResource("7_xdokh")]
+
+[node name="HurtBox" parent="AttackDirection/DamageBox" index="0"]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="AttackDirection/DamageBox/HurtBox" index="0"]
+position = Vector2(1, 0)
+
+[node name="HitBox" parent="AttackDirection/DamageBox" index="1"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="AttackDirection/DamageBox/HitBox" index="0"]
+position = Vector2(19, 0)
+
+[connection signal="body_entered" from="AttackDirection/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="AttackDirection/DamageBox/HitBox" to="." method="_on_hit_box_area_entered"]
+
+[editable path="AttackDirection/DamageBox"]

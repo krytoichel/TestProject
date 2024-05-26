@@ -1,4 +1,4 @@
-[gd_scene load_steps=313 format=3 uid="uid://doc4cbch6b1y6"]
+[gd_scene load_steps=314 format=3 uid="uid://doc4cbch6b1y6"]
 
 [ext_resource type="Script" path="res://PlayerScript2D/player.gd" id="1_6xdrl"]
 [ext_resource type="Texture2D" uid="uid://c8xkugtxiub8k" path="res://Textures/Hero/Hero Knight 3/PNG/Attacks/attack-A1.png" id="2_jvfet"]
@@ -144,6 +144,7 @@
 [ext_resource type="Texture2D" uid="uid://cxteu3gbns12d" path="res://Textures/Hero/Hero Knight 3/PNG/walk-with-weapon-9.png" id="142_02g64"]
 [ext_resource type="Texture2D" uid="uid://b6sad602bac3g" path="res://Textures/Hero/Hero Knight 3/PNG/walk-with-weapon-10.png" id="143_2nag3"]
 [ext_resource type="Texture2D" uid="uid://dikmjhqo17fe3" path="res://Textures/Hero/Hero Knight 3/PNG/walk-with-weapon-11.png" id="144_c86s1"]
+[ext_resource type="PackedScene" uid="uid://cfxn7vbo6ae7w" path="res://DamageBox/damage_box.tscn" id="145_d08kk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e34ra"]
 radius = 13.0
@@ -1537,7 +1538,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_67cmn"]
-length = 0.4
+length = 0.65
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1545,7 +1546,7 @@ tracks/0/path = NodePath("CollisionShape2D/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
@@ -1618,7 +1619,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_fby8e"]
-length = 1.2
+length = 2.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1928,8 +1929,9 @@ shape = SubResource("CapsuleShape2D_e34ra")
 position = Vector2(15, -1)
 scale = Vector2(0.811153, 0.811153)
 sprite_frames = SubResource("SpriteFrames_1cj4b")
-animation = &"Attack1"
+animation = &"Idle"
 autoplay = "Idle_weapon"
+frame = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -1945,3 +1947,21 @@ drag_horizontal_enabled = true
 libraries = {
 "": SubResource("AnimationLibrary_sq88i")
 }
+
+[node name="DamageBox" parent="." instance=ExtResource("145_d08kk")]
+
+[node name="HurtBox" parent="DamageBox" index="0"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="DamageBox/HurtBox" index="0"]
+position = Vector2(-1, -3)
+
+[node name="HitBox" parent="DamageBox" index="1"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="DamageBox/HitBox" index="0"]
+position = Vector2(30, -3)
+
+[editable path="DamageBox"]
