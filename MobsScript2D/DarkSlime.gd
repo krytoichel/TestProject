@@ -2,84 +2,103 @@ extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var chase = false
-var chase1 = false
+enum {
+	IDLE,
+	ATTACK,
+	CHASE
+}
 
-var speed = 70
+var state: int = 0:
+	set(value):
+		state = value
+		match state:
+			IDLE:
+				idle_state()
+			ATTACK:
+				attack_state()
 
-@onready var anim = $AnimatedSprite2D
+var speed = 100
+
+@onready var animPlayer = $AnimationPlayer
+@onready var sprite = $AnimatedSprite2D
+
 var alive = true
+var player
+var direction
+var damage = 20
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _ready():
+	Signals.connect("player_position_update", Callable(self, "_on_player_position_update"))
+
+
+func _physics_process(delta):
+	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	if state == CHASE:
+		chase_state()
 	
-	var player = $"../../Player/Player"
-	var direction = (player.position - self.position).normalized()
-	
-	if alive == true:
-		if chase == true and chase1 == false:
-			velocity.x = direction.x * speed
-			anim.play('walk')
-		
-		elif chase == false and chase1 == false:
-			velocity.x = 0
-			anim.play('idle')
-			
-		if direction.x < 0:
-			$AnimatedSprite2D.flip_h = false
-		else:
-			$AnimatedSprite2D.flip_h = true
-	
+
 	move_and_slide()
+
+
+	
+func _on_player_position_update(player_pos):
+	player = player_pos
+
+
+func _on_area_2d_body_entered(body):
+	state = ATTACK
 	
 	
+func idle_state():
+	animPlayer.play("idle")
+	await get_tree().create_timer(1).timeout
+	$AttackDirection1/Area2D/CollisionShape2D.disabled = false
+	state = CHASE
+	
+func attack_state():
+	animPlayer.play("attack_A")
+	await animPlayer.animation_finished
+	$AttackDirection1/Area2D/CollisionShape2D.disabled = true
+	state = IDLE
+	
+func chase_state():
+	direction = (player - position).normalized()
+	var direction1 = (player - position).normalized()
+	
+
+	
+	if direction.x < 0:
+		sprite.flip_h = false
+		$AttackDirection1.rotation_degrees = 0
+		print(abs(player.x - position.x))
+		if abs(player.x - position.x) < 110:
+			animPlayer.play("walk")
+			velocity.x = direction.x * 100
+		elif abs(player.x - position.x) > 200: 
+			velocity.x = 0
+			state = IDLE
+	else:
+		sprite.flip_h = true
+		$AttackDirection1.rotation_degrees = 180
+		print(abs(player.x - position.x))
+		if abs(player.x - position.x) < 110:
+			animPlayer.play("walk")
+			velocity.x = direction.x * 100
+		elif abs(player.x - position.x) > 200: 
+			velocity.x = 0
+			state = IDLE
+		
+		
+	
+	
+func _on_hit_box_area_entered(area):
+	Signals.emit_signal("enemy_attack", damage)
 
 
-func _on_detector_body_entered(body):
-	if body.name == 'Player':
-		chase = true
-		chase1 = false
-
-
-func _on_detector_body_exited(body):
-	if body.name == 'Player':
-		chase = false
-		chase1 = false
 
 
 
-
-func death():
-	alive = false
-	anim.play('death')
-	await get_tree().create_timer(0.8).timeout
-	queue_free()
-
-
-
-func _on_detector_attack_body_entered(body):
-	if body.name == 'Player':
-		chase1 = true
-		chase = false
-		anim.play("attack_A")
-		await get_tree().create_timer(0.8).timeout
-		body.anim.play("Hit_idle_B")
-		#await get_tree().create_timer(5)
-		#body.health -= 20
-		#await get_tree().create_timer(5).timeout
-
-
-
-
-func _on_detector_attack_body_exited(body):
-	if body.name == 'Player':
-		chase1 = false
-		chase = true
-
-
-func _on_death_body_entered(body):
-	if body.name == "Player":
-		body.velocity.y -= 200
-		death()
+func _on_area_2d_body_exited(body):
+	state = IDLE

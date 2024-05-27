@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://ckdtc81cdnmij"]
+[gd_scene load_steps=60 format=3 uid="uid://ckdtc81cdnmij"]
 
 [ext_resource type="Script" path="res://MobsScript2D/DarkSlime.gd" id="1_2evem"]
 [ext_resource type="Texture2D" uid="uid://6eorrphugfk5" path="res://Textures/Mobs/DarkSlime/PNG/attack-A1.png" id="1_g4gkq"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dv10alue5qmev" path="res://Textures/Mobs/DarkSlime/PNG/walk-2.png" id="21_bt1ya"]
 [ext_resource type="Texture2D" uid="uid://dfuk3h187acaw" path="res://Textures/Mobs/DarkSlime/PNG/walk-3.png" id="22_op3v3"]
 [ext_resource type="Texture2D" uid="uid://bfvs56ou6t7bv" path="res://Textures/Mobs/DarkSlime/PNG/walk-4.png" id="23_l6f8i"]
+[ext_resource type="PackedScene" uid="uid://cfxn7vbo6ae7w" path="res://DamageBox/damage_box.tscn" id="25_0sf71"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdx4c"]
 radius = 6.99999
@@ -213,14 +214,162 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fbfo2"]
-radius = 79.0
+[sub_resource type="Animation" id="Animation_6pkft"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["attack_A"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection1/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6684o"]
-radius = 35.0143
+[sub_resource type="Animation" id="Animation_2sje2"]
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["death"]
+}
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipuoi"]
-size = Vector2(5.375, 5.1875)
+[sub_resource type="Animation" id="Animation_gxfr2"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle"]
+}
+
+[sub_resource type="Animation" id="Animation_s1eie"]
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["walk"]
+}
+
+[sub_resource type="Animation" id="Animation_6ur0d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackDirection1/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfcqc"]
+_data = {
+"RESET": SubResource("Animation_6ur0d"),
+"attack_A": SubResource("Animation_6pkft"),
+"death": SubResource("Animation_2sje2"),
+"idle": SubResource("Animation_gxfr2"),
+"walk": SubResource("Animation_s1eie")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vm42"]
+radius = 9.05539
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6pa3"]
+radius = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jnun"]
+size = Vector2(17, 26)
 
 [node name="DarkSlime" type="CharacterBody2D"]
 collision_layer = 4
@@ -235,29 +384,45 @@ shape = SubResource("CapsuleShape2D_fdx4c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -33)
 sprite_frames = SubResource("SpriteFrames_5qon8")
-animation = &"death"
-frame = 1
-frame_progress = 0.30555
+animation = &"attack_A"
+frame = 9
 
-[node name="Detector" type="Area2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bfcqc")
+}
+autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
-shape = SubResource("CircleShape2D_fbfo2")
+[node name="AttackDirection1" type="Node2D" parent="."]
 
-[node name="DetectorAttack" type="Area2D" parent="."]
+[node name="DamageBox" parent="AttackDirection1" instance=ExtResource("25_0sf71")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorAttack"]
-position = Vector2(-1, 5)
-shape = SubResource("CircleShape2D_6684o")
+[node name="HurtBox" parent="AttackDirection1/DamageBox" index="0"]
+collision_layer = 0
+collision_mask = 32
 
-[node name="Death" type="Area2D" parent="."]
+[node name="CollisionShape2D" parent="AttackDirection1/DamageBox/HurtBox" index="0"]
+position = Vector2(-2, 5)
+shape = SubResource("CircleShape2D_3vm42")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
-position = Vector2(0, 1.59375)
-shape = SubResource("RectangleShape2D_ipuoi")
+[node name="HitBox" parent="AttackDirection1/DamageBox" index="1"]
+collision_layer = 0
+collision_mask = 16
 
-[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
-[connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
-[connection signal="body_entered" from="DetectorAttack" to="." method="_on_detector_attack_body_entered"]
-[connection signal="body_exited" from="DetectorAttack" to="." method="_on_detector_attack_body_exited"]
-[connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
+[node name="CollisionShape2D" parent="AttackDirection1/DamageBox/HitBox" index="0"]
+position = Vector2(-51, 0)
+shape = SubResource("CircleShape2D_e6pa3")
+
+[node name="Area2D" type="Area2D" parent="AttackDirection1"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection1/Area2D"]
+position = Vector2(-51, 0)
+shape = SubResource("RectangleShape2D_5jnun")
+
+[connection signal="area_entered" from="AttackDirection1/DamageBox/HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="AttackDirection1/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AttackDirection1/Area2D" to="." method="_on_area_2d_body_exited"]
+
+[editable path="AttackDirection1/DamageBox"]

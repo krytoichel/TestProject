@@ -37,7 +37,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	if state == CHASE:
 		chase_state()
-			
+	
 
 	move_and_slide()
 
@@ -66,13 +66,33 @@ func attack_state():
 	
 func chase_state():
 	direction = (player - position).normalized()
+	var direction1 = (player - position).normalized()
+	
+
 	
 	if direction.x < 0:
 		sprite.flip_h = true
 		$AttackDirection.rotation_degrees = 180
+		print(abs(player.x - position.x))
+		if abs(player.x - position.x) < 110:
+			animPlayer.play("run")
+			velocity.x = direction.x * 100
+		elif abs(player.x - position.x) > 200: 
+			velocity.x = 0
+			state = IDLE
 	else:
 		sprite.flip_h = false
 		$AttackDirection.rotation_degrees = 0
+		print(abs(player.x - position.x))
+		if abs(player.x - position.x) < 110:
+			animPlayer.play("run")
+			velocity.x = direction.x * 100
+		elif abs(player.x - position.x) > 200: 
+			velocity.x = 0
+			state = IDLE
+		
+		
+	
 	
 
 

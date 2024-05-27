@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://DamageBox/damage_box.gd" id="1_d2gsy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p45cw"]
-radius = 7.0
+radius = 9.05539
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h3wan"]
-radius = 9.05539
+radius = 14.0357
 
 [node name="DamageBox" type="Node2D"]
 script = ExtResource("1_d2gsy")
@@ -19,6 +19,6 @@ shape = SubResource("CircleShape2D_p45cw")
 [node name="HitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(22, 0)
+position = Vector2(24, 0)
 shape = SubResource("CircleShape2D_h3wan")
 disabled = true
