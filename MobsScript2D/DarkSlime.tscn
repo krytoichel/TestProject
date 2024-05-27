@@ -224,6 +224,7 @@ size = Vector2(5.375, 5.1875)
 
 [node name="DarkSlime" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_2evem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

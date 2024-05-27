@@ -12,7 +12,9 @@ enum {
 	ROLL,
 	SHIELD,
 	RUN,
-	DAMAGE
+	DAMAGE,
+	DEATH
+	
 }
 
 #переменные
@@ -65,18 +67,14 @@ func _physics_process(delta):
 			move_state()#1
 		DAMAGE:
 			damage_state()
+		DEATH:
+			death_state()
 			
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if velocity.y > 0:
 		animPlayer.play('Fall')
-	if health <= 0:
-		anim.position.y = -14
-		health = 0
-		animPlayer.play('Death')
-		await animPlayer.animation_finished
-		queue_free()
-		#get_tree().change_scene_to_file(""res://MainMenuScript2D/menu.tscn"")
+	
 	
 	move_and_slide()
 	
@@ -212,7 +210,15 @@ func damage_state():
 func _on_damage_received(enemy_damage):
 	state = DAMAGE
 	health -= enemy_damage
-	print(health)
+	if health <= 0:
+		state = DEATH
+func death_state():
+	anim.position.y = -14
+	health = 0
+	animPlayer.play('Death')
+	await animPlayer.animation_finished
+	queue_free()
+	get_tree().change_scene_to_file('res://MainMenuScript2D/menu.tscn')
 
 
 	

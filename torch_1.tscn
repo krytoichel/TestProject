@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=3 uid="uid://do5rcectaag4n"]
+
+[ext_resource type="Texture2D" uid="uid://b20qnkfh44wtn" path="res://Textures/PixelCastle/Anim/torch-A-01.png" id="1_lny6l"]
+[ext_resource type="Texture2D" uid="uid://crfv54qgx15hy" path="res://Textures/PixelCastle/Anim/torch-A-02.png" id="2_25m7e"]
+[ext_resource type="Texture2D" uid="uid://w0igda3eyo63" path="res://Textures/PixelCastle/Anim/torch-A-03.png" id="3_l76i6"]
+[ext_resource type="Texture2D" uid="uid://cgk1vhki4kqn6" path="res://Textures/PixelCastle/Anim/torch-A-04.png" id="4_n7g4h"]
+[ext_resource type="Texture2D" uid="uid://d0ifkik6viq4s" path="res://Textures/circle.png" id="5_6dqyx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qvx2"]
+atlas = ExtResource("1_lny6l")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljj4s"]
+atlas = ExtResource("2_25m7e")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew4o7"]
+atlas = ExtResource("3_l76i6")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wslf"]
+atlas = ExtResource("4_n7g4h")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7nh3w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qvx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljj4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew4o7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wslf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Torch1" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7nh3w")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.483378
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.2
+texture = ExtResource("5_6dqyx")

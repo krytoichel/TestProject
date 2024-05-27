@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://op8fmqww8anh"]
+[gd_scene load_steps=29 format=3 uid="uid://op8fmqww8anh"]
 
 [ext_resource type="PackedScene" uid="uid://doc4cbch6b1y6" path="res://PlayerScript2D/player.tscn" id="1_0gg2w"]
 [ext_resource type="Texture2D" uid="uid://dk40el05skdch" path="res://Textures/PixelCastle/Background/01 background.png" id="1_bme2i"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://do5rcectaag4n" path="res://torch_1.tscn" id="19_8iqo5"]
 [ext_resource type="PackedScene" uid="uid://c6ocrjibmf4n8" path="res://torch_2.tscn" id="20_dga7s"]
 [ext_resource type="PackedScene" uid="uid://b73yo4v06bhkm" path="res://torch_3.tscn" id="21_ug5ny"]
-[ext_resource type="PackedScene" uid="uid://b8okmaofsn0a8" path="res://ships.tscn" id="22_m7snm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ly5u"]
 texture = ExtResource("8_mensm")
@@ -15961,9 +15960,6 @@ position = Vector2(139, 195)
 
 [node name="Torch3" parent="." instance=ExtResource("21_ug5ny")]
 z_index = 1
-position = Vector2(131, 183)
-
-[node name="ships" parent="." instance=ExtResource("22_m7snm")]
-position = Vector2(282, 279)
+position = Vector2(130, 179)
 
 [connection signal="timeout" from="DayNight" to="." method="_on_gay_night_timeout"]
