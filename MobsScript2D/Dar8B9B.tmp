@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ckdtc81cdnmij"]
+[gd_scene load_steps=66 format=3 uid="uid://ckdtc81cdnmij"]
 
 [ext_resource type="Script" path="res://MobsScript2D/DarkSlime.gd" id="1_2evem"]
 [ext_resource type="Texture2D" uid="uid://6eorrphugfk5" path="res://Textures/Mobs/DarkSlime/PNG/attack-A1.png" id="1_g4gkq"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bfvs56ou6t7bv" path="res://Textures/Mobs/DarkSlime/PNG/walk-4.png" id="23_l6f8i"]
 [ext_resource type="Texture2D" uid="uid://dkq231bftet3r" path="res://Textures/Mobs/DarkSlime/PNG/hit-3.png" id="23_pfgsj"]
 [ext_resource type="PackedScene" uid="uid://cfxn7vbo6ae7w" path="res://DamageBox/damage_box.tscn" id="25_0sf71"]
+[ext_resource type="PackedScene" uid="uid://cieetcptnc4ao" path="res://MobsScript2D/mob_health.tscn" id="26_q35uy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdx4c"]
 radius = 6.99999
@@ -178,7 +179,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vlulk")
 }],
-"loop": false,
+"loop": true,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -485,7 +486,8 @@ shape = SubResource("CapsuleShape2D_fdx4c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -33)
 sprite_frames = SubResource("SpriteFrames_5qon8")
-animation = &"death"
+animation = &"take_hit"
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -521,8 +523,14 @@ collision_mask = 2
 position = Vector2(-51, 0)
 shape = SubResource("RectangleShape2D_5jnun")
 
+[node name="MobHealth" parent="AttackDirection1" instance=ExtResource("26_q35uy")]
+position = Vector2(-11, -19)
+scale = Vector2(0.12, 0.12)
+
 [connection signal="area_entered" from="AttackDirection1/DamageBox/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="AttackDirection1/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackDirection1/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="damage_received" from="AttackDirection1/MobHealth" to="." method="_on_mob_health_damage_received"]
+[connection signal="no_health" from="AttackDirection1/MobHealth" to="." method="_on_mob_health_no_health"]
 
 [editable path="AttackDirection1/DamageBox"]

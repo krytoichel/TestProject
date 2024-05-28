@@ -5,7 +5,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 enum {
 	IDLE,
 	ATTACK,
-	CHASE
+	CHASE,
+	DEATH,
+	DAMAGE,
+	RECOVER
 }
 
 var state: int = 0:
@@ -16,6 +19,12 @@ var state: int = 0:
 				idle_state()
 			ATTACK:
 				attack_state()
+			DEATH:
+				death_state()
+			DAMAGE:
+				damage_state()
+			RECOVER:
+				recover_state()
 
 var speed = 100
 
@@ -53,15 +62,13 @@ func _on_area_2d_body_entered(body):
 	
 func idle_state():
 	animPlayer.play("idle")
-	await get_tree().create_timer(1).timeout
-	$AttackDirection1/Area2D/CollisionShape2D.disabled = false
+	
 	state = CHASE
 	
 func attack_state():
 	animPlayer.play("attack_A")
 	await animPlayer.animation_finished
-	$AttackDirection1/Area2D/CollisionShape2D.disabled = true
-	state = IDLE
+	state = RECOVER
 	
 func chase_state():
 	direction = (player - position).normalized()
@@ -72,7 +79,7 @@ func chase_state():
 	if direction.x < 0:
 		sprite.flip_h = false
 		$AttackDirection1.rotation_degrees = 0
-		print(abs(player.x - position.x))
+		#print(abs(player.x - position.x))
 		if abs(player.x - position.x) < 110:
 			animPlayer.play("walk")
 			velocity.x = direction.x * 100
@@ -82,7 +89,7 @@ func chase_state():
 	else:
 		sprite.flip_h = true
 		$AttackDirection1.rotation_degrees = 180
-		print(abs(player.x - position.x))
+		#print(abs(player.x - position.x))
 		if abs(player.x - position.x) < 110:
 			animPlayer.play("walk")
 			velocity.x = direction.x * 100
@@ -91,7 +98,23 @@ func chase_state():
 			state = IDLE
 		
 		
+func damage_state():
+	animPlayer.play("take_hit")
+	await animPlayer.animation_finished
+	state = IDLE
+
+func death_state():
+	animPlayer.play("death")
+	await animPlayer.animation_finished
+	queue_free()
+
+func recover_state():
+	animPlayer.play("recover")
+	await  animPlayer.animation_finished
+	state = IDLE	
 	
+
+
 	
 func _on_hit_box_area_entered(area):
 	Signals.emit_signal("enemy_attack", damage)
@@ -102,3 +125,15 @@ func _on_hit_box_area_entered(area):
 
 func _on_area_2d_body_exited(body):
 	state = IDLE
+	
+	
+	
+
+
+func _on_mob_health_damage_received():
+	state = IDLE
+	state = DAMAGE
+
+
+func _on_mob_health_no_health():
+	state = DEATH

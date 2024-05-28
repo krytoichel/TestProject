@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-signal health_changed (new_health)
 #состояния
 enum {
 	ATTACK_RUB,
@@ -30,8 +29,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animPlayer = $AnimationPlayer
 
 #базовые состояния
-var max_health = 100
-var health
+var health = 100
 var shard = 0
 var state = RUN
 var combo1 = false
@@ -39,14 +37,18 @@ var combo2 = false
 var attack_cooldown = false
 var state_cooldown = false
 var player_pos 
+var damage_basic = 10
+var damage_multiplie = 1
+var damage_current
 
 
 func _ready():
 	Signals.connect("enemy_attack", Callable(self, "_on_damage_received"))
-	health = max_health
 
 #процессы, происходящие на левеле постоянно
 func _physics_process(delta):
+	
+	damage_current = damage_basic * damage_multiplie
 	match state:
 		ATTACK_RUB:
 			attack1_state()#1
@@ -103,9 +105,12 @@ func move_state():
 		if direction == -1 and health > 0:
 			anim.position.x = -15
 			anim.flip_h = true
+			$AttackDirection.rotation_degrees = 180
 		elif direction == 1 and health > 0:
 			anim.position.x = 15
 			anim.flip_h = false
+			
+			$AttackDirection.rotation_degrees = 0
 			
 		#прыжок
 		if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -145,6 +150,7 @@ func roll_state():
 	state = RUN
 
 func attack1_state():
+	damage_multiplie = 1
 	if Input.is_action_just_pressed('attack_rub') and combo1 == true:
 		state = ATTACK_RUB1
 	velocity.x = 0
@@ -154,12 +160,14 @@ func attack1_state():
 	state = RUN
 
 func attack11_state():
+	damage_multiplie = 1
 	animPlayer.play('Attack1')
 	await animPlayer.animation_finished
 	attack_freeze()
 	state = RUN
 
 func attack2_state():
+	damage_multiplie = 1
 	if Input.is_action_just_pressed('attack_kol') and combo2 == true:
 		state = ATTACK_KOL1
 	velocity.x = 0
@@ -169,17 +177,20 @@ func attack2_state():
 	state = RUN
 
 func attack22_state():
+	damage_multiplie = 1
 	animPlayer.play('Attack3')
 	await animPlayer.animation_finished
 	attack_freeze()
 	state = RUN
 
 func combo1_state():
+	damage_multiplie = 1.2
 	combo1 = true
 	await animPlayer.animation_finished
 	combo1 = false
 
 func combo2_state():
+	damage_multiplie = 2
 	combo2 = true
 	await animPlayer.animation_finished
 	combo2 = false
@@ -211,11 +222,19 @@ func damage_state():
 	
 
 func _on_damage_received(enemy_damage):
-	state = DAMAGE
+	if state == SHIELD:
+		enemy_damage /= 2
+	elif state == ROLL:
+		enemy_damage = 0
+	else :
+		state = DAMAGE
+	
 	health -= enemy_damage
+	print(health)
 	if health <= 0:
+		health = 0
 		state = DEATH
-	emit_signal('health_changed', health)
+	
 func death_state():
 	anim.position.y = -14
 	health = 0
@@ -226,19 +245,6 @@ func death_state():
 
 
 	
-	
-	
 
-	
-	
-	
-		
-		
-	
-	
-		
-	
-	
-	
-	
-	
+func _on_hit_box_area_entered(area):
+	Signals.emit_signal("player_attack", damage_current)

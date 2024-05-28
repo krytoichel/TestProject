@@ -1,4 +1,4 @@
-[gd_scene load_steps=314 format=3 uid="uid://doc4cbch6b1y6"]
+[gd_scene load_steps=316 format=3 uid="uid://doc4cbch6b1y6"]
 
 [ext_resource type="Script" path="res://PlayerScript2D/player.gd" id="1_6xdrl"]
 [ext_resource type="Texture2D" uid="uid://c8xkugtxiub8k" path="res://Textures/Hero/Hero Knight 3/PNG/Attacks/attack-A1.png" id="2_jvfet"]
@@ -1290,6 +1290,18 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Attack1"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_2s8uf"]
 length = 0.6
@@ -1332,6 +1344,18 @@ tracks/2/keys = {
 "method": &"combo2_state"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.306994, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_7w4pl"]
 length = 0.7
@@ -1358,6 +1382,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Attack3"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_bj8l2"]
@@ -1399,6 +1435,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"combo1_state"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_wop8m"]
@@ -1728,6 +1776,21 @@ tracks/1/keys = {
 "values": ["Kick"]
 }
 
+[sub_resource type="Animation" id="Animation_sb8rf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_36b0g"]
 length = 0.521739
 tracks/0/type = "value"
@@ -1910,6 +1973,7 @@ _data = {
 "Idle_weapon": SubResource("Animation_thnf5"),
 "Jump": SubResource("Animation_1mtg8"),
 "Kick": SubResource("Animation_f5y43"),
+"RESET": SubResource("Animation_sb8rf"),
 "Roll": SubResource("Animation_36b0g"),
 "Run": SubResource("Animation_jm7fd"),
 "Shield_active": SubResource("Animation_diw1y"),
@@ -1917,6 +1981,9 @@ _data = {
 "Shield_up": SubResource("Animation_0j382"),
 "Walk_weapon": SubResource("Animation_ada4n")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tb5yg"]
+radius = 14.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -1932,7 +1999,6 @@ scale = Vector2(0.811153, 0.811153)
 sprite_frames = SubResource("SpriteFrames_1cj4b")
 animation = &"Attack1"
 autoplay = "Idle_weapon"
-frame = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -1949,20 +2015,26 @@ libraries = {
 "": SubResource("AnimationLibrary_sq88i")
 }
 
-[node name="DamageBox" parent="." instance=ExtResource("145_d08kk")]
+[node name="AttackDirection" type="Node2D" parent="."]
 
-[node name="HurtBox" parent="DamageBox" index="0"]
+[node name="DamageBox" parent="AttackDirection" instance=ExtResource("145_d08kk")]
+
+[node name="HurtBox" parent="AttackDirection/DamageBox" index="0"]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" parent="DamageBox/HurtBox" index="0"]
+[node name="CollisionShape2D" parent="AttackDirection/DamageBox/HurtBox" index="0"]
 position = Vector2(1, 2)
 
-[node name="HitBox" parent="DamageBox" index="1"]
+[node name="HitBox" parent="AttackDirection/DamageBox" index="1"]
 collision_layer = 0
 collision_mask = 32
 
-[node name="CollisionShape2D" parent="DamageBox/HitBox" index="0"]
-position = Vector2(29, -1)
+[node name="CollisionShape2D" parent="AttackDirection/DamageBox/HitBox" index="0"]
+position = Vector2(31, 4)
+shape = SubResource("CircleShape2D_tb5yg")
+disabled = false
 
-[editable path="DamageBox"]
+[connection signal="area_entered" from="AttackDirection/DamageBox/HitBox" to="." method="_on_hit_box_area_entered"]
+
+[editable path="AttackDirection/DamageBox"]
