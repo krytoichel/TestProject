@@ -15982,7 +15982,7 @@ theme_override_font_sizes/font_size = 30
 text = "Gems"
 script = SubResource("GDScript_vpmq2")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 449.0
@@ -16019,4 +16019,5 @@ position = Vector2(139, 195)
 z_index = 1
 position = Vector2(276, 181)
 
+[connection signal="health_changed" from="Player/Player" to="." method="_on_player_health_changed"]
 [connection signal="timeout" from="DayNight" to="." method="_on_gay_night_timeout"]
