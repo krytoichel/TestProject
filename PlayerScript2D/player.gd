@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal health_changed(new_health)
+
 #состояния
 enum {
 	ATTACK_RUB,
@@ -30,7 +32,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 #базовые состояния
 var max_health = 100
-var health = max_health
+var health
 var shard = 0
 var state = RUN
 var combo1 = false
@@ -45,7 +47,7 @@ var damage_current
 
 func _ready():
 	Signals.connect("enemy_attack", Callable(self, "_on_damage_received"))
-
+	health = max_health
 #процессы, происходящие на левеле постоянно
 func _physics_process(delta):
 	
@@ -235,7 +237,7 @@ func _on_damage_received(enemy_damage):
 	if health <= 0:
 		health = 0
 		state = DEATH
-	
+	emit_signal('health_changed', health)
 	
 func death_state():
 	anim.position.y = -14
