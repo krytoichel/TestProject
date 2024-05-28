@@ -16069,6 +16069,27 @@ position = Vector2(1713, 760)
 [node name="Goblin" parent="Mobs" instance=ExtResource("14_dkeab")]
 position = Vector2(358, 262)
 
+[node name="Goblin2" parent="Mobs" instance=ExtResource("14_dkeab")]
+position = Vector2(1102, 819)
+
+[node name="Goblin7" parent="Mobs" instance=ExtResource("14_dkeab")]
+position = Vector2(1597, 825)
+
+[node name="Goblin8" parent="Mobs" instance=ExtResource("14_dkeab")]
+position = Vector2(1927, 820)
+
+[node name="Goblin3" parent="Mobs" instance=ExtResource("14_dkeab")]
+position = Vector2(748, 716)
+
+[node name="Goblin4" parent="Mobs" instance=ExtResource("14_dkeab")]
+position = Vector2(413, 552)
+
+[node name="Goblin5" parent="Mobs" instance=ExtResource("14_dkeab")]
+position = Vector2(1348, 362)
+
+[node name="Goblin6" parent="Mobs" instance=ExtResource("14_dkeab")]
+position = Vector2(872, 263)
+
 [node name="DarkSlime" parent="Mobs" instance=ExtResource("15_3bc5a")]
 position = Vector2(533, 258)
 
@@ -16113,5 +16134,4 @@ visible = false
 blend_mode = 1
 range_layer_min = -1
 
-[connection signal="health_changed" from="Player/Player" to="." method="_on_player_health_changed"]
 [connection signal="timeout" from="DayNight" to="." method="_on_gay_night_timeout"]

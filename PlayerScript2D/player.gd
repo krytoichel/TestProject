@@ -29,7 +29,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animPlayer = $AnimationPlayer
 
 #базовые состояния
-var health = 100
+var max_health = 100
+var health = max_health
 var shard = 0
 var state = RUN
 var combo1 = false
@@ -234,6 +235,7 @@ func _on_damage_received(enemy_damage):
 	if health <= 0:
 		health = 0
 		state = DEATH
+	
 	
 func death_state():
 	anim.position.y = -14
